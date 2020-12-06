@@ -26,6 +26,7 @@ namespace BoatManager.ViewModel
             boatService = new BoatService();
             addCommand = new RelayCommand(Add);
             deleteCommand = new RelayCommand(Delete);
+            updateCommand = new RelayCommand(Update);
             inputBoat = new Boat();
             LoadBoatList();
         }
@@ -114,7 +115,26 @@ namespace BoatManager.ViewModel
             }
         }
 
+        private RelayCommand updateCommand;
 
+        public RelayCommand UpdateCommand
+        {
+            get { return updateCommand; }
+        }
+
+        public void Update()
+        {
+            try
+            {
+                bool isUpdated = boatService.Update(InputBoat);
+                LoadBoatList();
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
 
     }

@@ -116,5 +116,63 @@ namespace BoatManager.Model
         }
 
 
+        public bool Update(Boat inputBoat)
+        {
+            int boatEditingIndex = 0;
+
+            for(int i = 0; i < boatList.Count; i++)
+            {
+                if(boatList[i].Id == inputBoat.Id)
+                {
+                    boatEditingIndex = i;
+                }
+            }
+
+
+            //Use the inputted ID as the key for which boat to update
+            //User inputs into the fields they want to change
+            //Any fields left blank left unchanged
+
+            string query = "UPDATE marriedBoats SET name = @name, faction = @faction, hull = @hull, level = @level WHERE id = @id;";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConString"].ConnectionString))
+            {
+                connection.Open();
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", inputBoat.Id);
+
+                    if (inputBoat.Name == String.Empty)
+                        command.Parameters.AddWithValue("@name", boatList[boatEditingIndex].Name);
+                    else
+                        command.Parameters.AddWithValue("@name", inputBoat.Name);
+
+                    if (inputBoat.Faction == String.Empty)
+                        command.Parameters.AddWithValue("@faction", boatList[boatEditingIndex].Faction);
+                    else
+                        command.Parameters.AddWithValue("@faction", inputBoat.Faction);
+
+                    if (inputBoat.Hull == String.Empty)
+                        command.Parameters.AddWithValue("@hull", boatList[boatEditingIndex].Hull);
+                    else
+                        command.Parameters.AddWithValue("@hull", inputBoat.Hull);
+
+                    if (inputBoat.Level == 0)
+                        command.Parameters.AddWithValue("@level", boatList[boatEditingIndex].Level);
+                    else
+                        command.Parameters.AddWithValue("@level", inputBoat.Level);
+
+
+                    command.ExecuteNonQuery();
+
+
+                }
+            }
+
+
+            return true;
+        }
+
+
     }
 }

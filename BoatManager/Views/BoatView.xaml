@@ -93,11 +93,49 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            
-            
-            
-            
-            
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Name ="UpdateData" FontFamily="Microsoft JhengHei" FontSize="16" >Update Data</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel>
+                    <TextBlock FontFamily="Microsoft JhengHei" FontSize="16">Enter the ID of the boat you wish to update and any data you want to update in the corrosponding fields</TextBlock>
+                    <Grid Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="350"/>
+                            <ColumnDefinition MinWidth="350"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="100"/>
+                            <RowDefinition MinHeight="100"/>
+
+                        </Grid.RowDefinitions>
+                        <TextBlock  FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center">Enter boat name</TextBlock>
+                        <TextBox Name ="BoatName1" Width="250" Height="20" Text="{Binding Path=InputBoat.Name}"></TextBox>
+
+                        <TextBlock  FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">Enter boat faction</TextBlock>
+                        <TextBox  Name="Faction1" Grid.Column="1" Grid.Row="0" Width="250" Height="20" Text="{Binding Path=InputBoat.Faction}"></TextBox>
+
+                        <TextBlock  FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Enter boat level</TextBlock>
+                        <TextBox Name ="Level1" Grid.Column="0" Grid.Row="1" Width="250" Height="20" Text="{Binding Path=InputBoat.Level}"></TextBox>
+
+                        <TextBlock  FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Enter ID</TextBlock>
+                        <TextBox Name ="Date" Grid.Column="1" Grid.Row="1" Width="250" Height="20" Text="{Binding Path=InputBoat.Id}"></TextBox>
+                    </Grid>
+                    <TextBlock  FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">Enter boat hull type</TextBlock>
+                    <TextBox Name ="Hull1" Width="250" Height="20" Text="{Binding Path=InputBoat.Hull}"></TextBox>
+
+                    <Button Name ="SubmitBoat1"  Margin="15"  Grid.Column="1" Grid.Row="2" MaxWidth="200" MaxHeight="50" Content="Submit" Command="{Binding Path=UpdateCommand}"/>
+
+                    <TextBlock Name ="dgMessage1" FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Text="{Binding Path=Message}"></TextBlock>
+                    <TextBlock Name ="mess1" FontFamily="Microsoft JhengHei" FontSize="14" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </TabItem>
+
+
+
         </TabControl>
     </Grid>
 </UserControl>
